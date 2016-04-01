@@ -11,7 +11,7 @@ namespace RxWorkshop.NET
 
         internal void Run()
         {
-            Solutions();
+
             // Rx code goes here.
             // Use Program.Print to print.
 
@@ -19,19 +19,28 @@ namespace RxWorkshop.NET
 
             // 1. Print the current datetime every second
 
+
             // 2. Observe Console key presses via Program.KeyPresses() and print them.
+
 
             // 3. Observe alphabets from A to Z with WorkShopObservables.Alphabets()
             //    Print whenever Program.KeyPresses() latest value is equal with the latest emited alphabet. 
 
+
             // 4. Observe WorkshopObservables.RandomIntegers() once.
             //    Print out the average of values.
+
 
             // 5. Observe WorkshopObservables.RandomIntegers 5 times.
             //    Print out how many times the average of values was over 50
 
-            // 6. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales.
+
+            // 6. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales()
             //    Generate a profit report per product.
+
+
+            // 7. Observe user input via Program.KeyPresses().
+            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
 
         }
 
@@ -63,6 +72,7 @@ namespace RxWorkshop.NET
                                .Subscribe(i => Program.Print($"{i} was equal!"));
 
 
+
             //// 4. Observe WorkshopObservables.RandomIntegers() print out the average and maximum of produced values.
             WorkshopObservables.RandomIntegers()
                                .Average()
@@ -79,7 +89,9 @@ namespace RxWorkshop.NET
                    .Subscribe(i => Program.Print($"The average of 100 random integers between 0 and 100 was over 50 times {i} / 5 "));
 
 
-            //6. Observe our "kesäkiska" sales with WorkshopObservables. Generate a profit report per product
+
+            //6. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales().
+            //   Generate a profit report per product
             WorkshopObservables.SummerPOSSales()
                    .GroupBy(i => i.Product)
                    .SelectMany(group =>
@@ -92,6 +104,15 @@ namespace RxWorkshop.NET
                                 return new { group.Key, profit };
                             }))
                    .Subscribe(i => Program.Print($"Product {i.Key} profited {i.profit}e"));
+
+
+            // 7. Observe user input via Program.KeyPresses().
+            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
+            Program.KeyPresses().GroupByUntil(_ => true, g => g.Throttle(TimeSpan.FromSeconds(3)))
+                                .SelectMany(g => g.Select(i => i.ToString()).ToList())
+                                .Select(i => string.Concat(i))
+                                .Subscribe(Program.Print);
+
         }
 
     }

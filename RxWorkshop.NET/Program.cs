@@ -13,9 +13,6 @@ namespace RxWorkshop.NET
         }
 
 
-
-
-
         /// <summary>
         /// KeyPress events to Observable from the console
         /// </summary>
@@ -26,7 +23,6 @@ namespace RxWorkshop.NET
                 k => KeyPressed += k, k => KeyPressed -= k)
                 .Select(i => i.EventArgs.PressedKey);
         }
-
 
 
         /// <summary>
