@@ -7,8 +7,8 @@
     <ProjectGuid>{47B2AEA9-A1A8-4CDC-B892-EF07861A4AA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <RootNamespace>RxWorkshop.Observables</RootNamespace>
+    <AssemblyName>RxWorkshop.Observables</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxWorkshop.NET", "RxWorkshop.NET\RxWorkshop.NET.csproj", "{90B0CDEB-26D3-4191-BEA8-9A54837C8102}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxWorkshop.Observables", "ClassLibrary1\RxWorkshop.Observables.csproj", "{47B2AEA9-A1A8-4CDC-B892-EF07861A4AA9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RxWorkshop.Observables", "RxWorkshop.Observables\RxWorkshop.Observables.csproj", "{47B2AEA9-A1A8-4CDC-B892-EF07861A4AA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -67,7 +67,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\RxWorkshop.Observables.csproj">
+    <ProjectReference Include="..\RxWorkshop.Observables\RxWorkshop.Observables.csproj">
       <Project>{47b2aea9-a1a8-4cdc-b892-ef07861a4aa9}</Project>
       <Name>RxWorkshop.Observables</Name>
     </ProjectReference>
