@@ -17,7 +17,7 @@ namespace RxWorkshop.NET
 
             // ASSIGNMENTS
 
-            // 1. Print the current datetime every second
+            // 1. Print the current datetime every second by using Observable.Interval()
 
 
             // 2. Observe Console key presses via Program.KeyPresses() and print them.
@@ -31,7 +31,7 @@ namespace RxWorkshop.NET
             //    Print out the average of values.
 
 
-            // 5. Observe WorkshopObservables.RandomIntegers 5 times.
+            // 5. Observe WorkshopObservables.RandomIntegers() 5 times.
             //    Print out how many times the average of values was over 50
 
 
@@ -51,7 +51,7 @@ namespace RxWorkshop.NET
         {
             //// SOLUTIONS
 
-            // 1. Print the current datetime every second
+            // 1. Print the current datetime every second using Observable.Interval()
             Observable.Interval( TimeSpan.FromSeconds(1) )
                       .Select( _ => DateTime.Now)
                       .Subscribe( Program.Print );
