@@ -17,11 +17,11 @@ namespace RxWorkshop.NET
         /// KeyPress events to Observable from the console
         /// </summary>
         /// <returns></returns>
-        public static IObservable<ConsoleKey> KeyPresses()
+        public static IObservable<string> KeyPresses()
         {
             return Observable.FromEventPattern<KeyPressEventHandler, KeyPressEventArgs>(
                 k => KeyPressed += k, k => KeyPressed -= k)
-                .Select(i => i.EventArgs.PressedKey);
+                .Select(i => i.EventArgs.PressedKey.ToString());
         }
 
 

@@ -29,9 +29,13 @@ namespace RxWorkshop
         {
             return Observable.Interval(TimeSpan.FromSeconds(1))
                              .Select(i => (char)(i + 65))
-                             .Take(25);
+                             .Take(26);
         }
 
+        /// <summary>
+        /// Produces random SalesItems from our "kesäkiska"
+        /// </summary>
+        /// <returns></returns>
         public static IObservable<SalesItem> SummerPOSSales()
         {
             return Observable.Create<SalesItem>(obs =>
