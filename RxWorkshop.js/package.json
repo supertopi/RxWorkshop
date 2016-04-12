@@ -1,0 +1,10 @@
+{
+  "name": "rx-workshop.js",
+  "version": "0.0.0",
+  "description": "RxWorkshop.js",
+  "main": "app.js",
+  "author": {
+    "name": "Topi",
+    "email": ""
+  }
+}

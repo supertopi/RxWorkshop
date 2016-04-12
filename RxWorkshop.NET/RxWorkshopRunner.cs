@@ -5,7 +5,6 @@ namespace RxWorkshop.NET
 {
     internal class RxWorkshopRunner
     {
-
         /// <summary>
         ///  Rx code goes here.
         //   Use Program.Print to print.
@@ -26,6 +25,7 @@ namespace RxWorkshop.NET
             // 3. Observe WorkshopObservables.RandomIntegers() once.
             //    Print out the average of values.
             //    TIPS: Observable.Average()
+
 
             // 4. Observe WorkshopObservables.RandomIntegers() once.
             //    Print out the average of values in groups of 10.
@@ -50,9 +50,97 @@ namespace RxWorkshop.NET
             // 8. Observe user input via Program.KeyPresses().
             //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
             //    TIPS: Observable.GroupByUntil() , Observable.Throttle()
-
-
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,12 +177,12 @@ namespace RxWorkshop.NET
 
             // 5. Observe WorkshopObservables.RandomIntegers() 5 times and Print out how many times the Average of emited values was over 50
             WorkshopObservables.RandomIntegers()
-                   .Average()
-                   .Do(Program.Print) // just to verify the results..
-                   .Repeat(5)
-                   .Where(i => i > 50)
-                   .Count()
-                   .Subscribe(i => Program.Print($"The average of 100 random integers between 0 and 100 was over 50, times {i} / 5 "));
+                               .Average()
+                               .Do(Program.Print) // just to verify the results..
+                               .Repeat(5)
+                               .Where(i => i > 50)
+                               .Count()
+                               .Subscribe(i => Program.Print($"The average of 100 random integers between 0 and 100 was over 50, times {i} / 5 "));
 
 
             // 6. Observe alphabets from A to Z with WorkShopObservables.Alphabets()
@@ -108,19 +196,19 @@ namespace RxWorkshop.NET
 
 
             //7. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales().
-            //   Generate a profit report per product
+            //   Generate a profit report per product.
             WorkshopObservables.SummerPOSSales()
-                   .GroupBy(i => i.Product)
-                   .SelectMany(group => 
-                       group.ToList() //blocks until OnCompleted
-                            .Do(i => Program.Print($"Product {group.Key} sold {i.Count}")) //just to verify the results..
-                            .Where(i => i.Count > 0)
-                            .Select( sales =>
-                            {
-                                var profit = sales.Count * (sales[0].SalesPrice - sales[0].ManufacturingPrice);  //since the Sales and Manufacturing costs are default
-                                return new { group.Key, profit };
-                            }))
-                   .Subscribe(i => Program.Print($"Product {i.Key} profited {i.profit}e"));
+                               .GroupBy(i => i.Product)
+                               .SelectMany(group => 
+                                   group.ToList() //blocks until OnCompleted
+                                        .Do(i => Program.Print($"Product {group.Key} sold {i.Count}")) //just to verify the results..
+                                        .Where(i => i.Count > 0)
+                                        .Select( sales =>
+                                        {
+                                            var profit = sales.Count * (sales[0].SalesPrice - sales[0].ManufacturingPrice);  //since the Sales and Manufacturing costs are default
+                                            return new { group.Key, profit };
+                                        }))
+                               .Subscribe(i => Program.Print($"Product {i.Key} profited {i.profit}e"));
 
 
             // 8. Observe user input via Program.KeyPresses().
