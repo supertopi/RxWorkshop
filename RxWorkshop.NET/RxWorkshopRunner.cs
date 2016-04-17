@@ -12,7 +12,7 @@ namespace RxWorkshop.NET
         internal void Run()
         {
             Observable.Return(1)
-                      .Subscribe( _ => Program.Print("Welcome to Rx Workshop!"));
+                      .Subscribe( _ => Program.Print("Welcome to RxWorkshop.NET! Remember to check http://reactivex.io/"));
 
             // ASSIGNMENTS
             // 1. Observe Console key presses via Program.KeyPresses() and print them.
@@ -41,16 +41,39 @@ namespace RxWorkshop.NET
             //    Print whenever Program.KeyPresses() latest value is equal with the latest emited alphabet. 
             //    TIPS: Observable.CombineLatest()
 
+            // 7. Observe user input via Program.KeyPresses().
+            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
+            //    TIPS: Observable.GroupByUntil() , Observable.Throttle()
 
-            // 7. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales()
+
+            // 8. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales()
             //    Generate a profit report per product.
             //    TIPS: Observable.GroupBy() , Observable.ToList()
 
 
-            // 8. Observe user input via Program.KeyPresses().
-            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
-            //    TIPS: Observable.GroupByUntil() , Observable.Throttle()
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -148,7 +171,6 @@ namespace RxWorkshop.NET
         internal void Solutions()
         {
             //// SOLUTIONS
-
             // 1. Print the current datetime every second using Observable.Interval()
             Observable.Interval( TimeSpan.FromSeconds(1) )
                       .Select( _ => DateTime.Now)
@@ -194,8 +216,15 @@ namespace RxWorkshop.NET
                                .Subscribe(i => Program.Print($"{i} was equal!"));
 
 
+            // 7. Observe user input via Program.KeyPresses().
+            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
+            Program.KeyPresses().GroupByUntil(_ => true, g => g.Throttle(TimeSpan.FromSeconds(3))) // New Rx version will include BufferUntil
+                                .SelectMany(g => g.ToList())
+                                .Select(i => string.Concat(i))
+                                .Subscribe(Program.Print);
 
-            //7. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales().
+
+            //8. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales().
             //   Generate a profit report per product.
             WorkshopObservables.SummerPOSSales()
                                .GroupBy(i => i.Product)
@@ -211,12 +240,7 @@ namespace RxWorkshop.NET
                                .Subscribe(i => Program.Print($"Product {i.Key} profited {i.profit}e"));
 
 
-            // 8. Observe user input via Program.KeyPresses().
-            //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
-            Program.KeyPresses().GroupByUntil(_ => true, g => g.Throttle(TimeSpan.FromSeconds(3))) // New Rx version will include BufferUntil
-                                .SelectMany( g => g.ToList() ) 
-                                .Select(i => string.Concat(i))
-                                .Subscribe(Program.Print);
+
 
         }
 
