@@ -1,2 +1,2 @@
 # RxWorkshop
-Assignments and solutions for RxWorkshop
+Assignments and presentation for RxWorkshop
