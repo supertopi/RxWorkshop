@@ -4,7 +4,7 @@ process.stdin.resume();
 process.stdin.on('data', process.exit.bind(process, 0));
 
 var Rx = require('rx');
-var WorkshopObservables = require('./WorkshopObservables.js')
+var WorkshopObservables = require('./WorkshopObservables.js');
 
 Rx.Observable.return('Welcome to RxWorkshop.JS ! Remember to check http://reactivex.io/')
     .subscribe(function (i) { console.log(i) });
@@ -22,7 +22,7 @@ Rx.Observable.return('Welcome to RxWorkshop.JS ! Remember to check http://reacti
 //4. Observe WorkshopObservables.ErrornousStream. When an error occurs, print it out and terminate the observable sequence.
      //TIPS: catch, finally, empty
 
-// 5. Observe WorkshopObservables.RandomIntegers two times and print out when the sum of 2 latest values produced by these observables is dividable by 7.
+// 5. Observe WorkshopObservables.RandomIntegers twice concurrently and print out when the sum of 2 latest values produced by these observables is dividable by 7.
 //    TIPS: zip
 
 
@@ -171,7 +171,7 @@ var Solutions = function () {
     safeStream.subscribe();
 
 
-    // 5. Observe WorkshopObservables.RandomIntegers two times and print out when the sum of 2 latest values produced by these observables is dividable by 7.
+    // 5. Observe WorkshopObservables.RandomIntegers twice concurrently and print out when the sum of 2 latest values produced by these observables is dividable by 7.
     //    TIPS: zip
     Rx.Observable.zip(WorkshopObservables.RandomIntegers, WorkshopObservables.RandomIntegers,
         function (a, b) {

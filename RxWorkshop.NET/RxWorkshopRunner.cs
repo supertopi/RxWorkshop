@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using System.Reactive.Linq;
+using System.Runtime.Remoting.Messaging;
 
 namespace RxWorkshop.NET
 {
@@ -43,14 +45,12 @@ namespace RxWorkshop.NET
 
             // 7. Observe user input via Program.KeyPresses().
             //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
-            //    TIPS: Observable.GroupByUntil() , Observable.Throttle()
+            //    TIPS: Observable.Scan() , Observable.Throttle()
 
 
             // 8. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales()
             //    Generate a profit report per product.
             //    TIPS: Observable.GroupBy() , Observable.ToList()
-
-
 
         }
 
@@ -218,10 +218,10 @@ namespace RxWorkshop.NET
 
             // 7. Observe user input via Program.KeyPresses().
             //    When the user starts input, wait for 3 seconds of silence and then print all the given input.
-            Program.KeyPresses().GroupByUntil(_ => true, g => g.Throttle(TimeSpan.FromSeconds(3))) // New Rx version will include BufferUntil
-                                .SelectMany(g => g.ToList())
-                                .Select(i => string.Concat(i))
-                                .Subscribe(Program.Print);
+            Program.KeyPresses()
+                .Scan(string.Concat)
+                .Throttle(TimeSpan.FromSeconds(3))
+                .Subscribe(Program.Print);
 
 
             //8. Observe our "kesäkiska" sales with WorkshopObservables.SummerPOSSales().
