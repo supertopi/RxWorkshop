@@ -6,5 +6,8 @@
   "author": {
     "name": "Topi",
     "email": ""
+  },
+  "dependencies" : {
+	  "rx": "git+https://github.com/Reactive-Extensions/RxJS.git"
   }
 }

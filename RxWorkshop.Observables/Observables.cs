@@ -41,7 +41,7 @@ namespace RxWorkshop
         {
             return Observable.Create<SalesItem>(obs =>
             {
-                var products = new SalesItem[]
+                var products = new []
                 {
                     new SalesItem { Product = "CHEEZECAKE" , SalesPrice = 4.20, ManufacturingPrice = 2.10 },
                     new SalesItem { Product = "Coffee" , SalesPrice = 2.50, ManufacturingPrice = 0.8 },
